@@ -13,6 +13,7 @@ export function PatientTable({
   patients,
   onEdit,
   onDelete,
+  onView,
 }: PatientTableProps) {
   const rows = patients.map((patient) => (
     <tr key={patient.id} className="hover:bg-slate-50">

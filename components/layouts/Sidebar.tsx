@@ -6,9 +6,8 @@ import { usePathname } from "next/navigation";
 const navigation = [
   { label: "Inicio", href: "/dashboard" },
   { label: "Pacientes", href: "/patients" },
-  { label: "Doctores", href: "/doctors" },
   { label: "Citas", href: "/appointments" },
-  { label: "Registros médicos", href: "/medical-records" },
+  { label: "Registros", href: "/records" },
   { label: "Configuración", href: "/settings" },
 ];
 

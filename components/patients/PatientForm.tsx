@@ -110,7 +110,7 @@ export function PatientForm({
           />
         </label>
       </div>
-      <Button type="submit" isSubmitting={isSubmitting}>
+      <Button type="submit" isLoading={isSubmitting}>
         {submitLabel}
       </Button>
     </form>

@@ -12,7 +12,9 @@ export function UpcomingAppointmentsCard({ upcoming, onView }: Props) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <h3 className="text-lg font-semibold text-slate-900">Próximas citas</h3>
-      <p className="mt-1 text-sm text-slate-500">Siguientes visitas programadas</p>
+      <p className="mt-1 text-sm text-slate-500">
+        Siguientes visitas programadas
+      </p>
 
       <div className="mt-4 space-y-3">
         {upcoming.slice(0, 5).map((a) => (
@@ -24,7 +26,9 @@ export function UpcomingAppointmentsCard({ upcoming, onView }: Props) {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button type="button" onClick={() => onView?.(a)}>Ver</Button>
+              <Button type="button" onClick={() => onView?.(a)}>
+                Ver
+              </Button>
             </div>
           </div>
         ))}
@@ -34,3 +38,4 @@ export function UpcomingAppointmentsCard({ upcoming, onView }: Props) {
       </div>
     </div>
   );
+}

@@ -21,7 +21,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   useEffect(() => {
     if (isHydrated && !token) {
-      router.replace("/auth/login");
+      router.replace("/login");
     }
   }, [isHydrated, token, router]);
 
@@ -34,7 +34,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
           </p>
           <p className="mt-2 text-sm">
             Si no eres redirigido,{" "}
-            <a href="/auth/login" className="font-medium text-slate-900">
+            <a href="/login" className="font-medium text-slate-900">
               haz clic aquí
             </a>
             .

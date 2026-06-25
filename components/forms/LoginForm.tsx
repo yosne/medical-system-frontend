@@ -108,7 +108,7 @@ export function LoginForm() {
         </label>
         <button
           type="button"
-          className="text-sm font-medium text-[var(--primary)] transition hover:text-blue-700"
+          className="text-sm font-medium text-(--primary) transition hover:text-blue-700"
         >
           Recuperar contraseña
         </button>

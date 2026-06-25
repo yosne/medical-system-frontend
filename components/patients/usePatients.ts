@@ -21,7 +21,8 @@ export function usePatients() {
     queryFn: patientsAPI.list,
   });
 
-  const createPatient = useMutation(patientsAPI.create, {
+  const createPatient = useMutation<Patient, Error, Omit<Patient, "id">>({
+    mutationFn: patientsAPI.create,
     onSuccess: (newPatient) => {
       queryClient.setQueryData<Patient[]>(["patients"], (existing) =>
         existing ? [newPatient, ...existing] : [newPatient],
@@ -30,27 +31,34 @@ export function usePatients() {
     },
   });
 
-  const updatePatient = useMutation(
-    ({ id, values }: { id: string; values: Partial<Omit<Patient, "id">> }) =>
-      patientsAPI.update(id, values),
-    {
-      onSuccess: (updated) => {
-        queryClient.setQueryData<Patient[]>(["patients"], (existing) =>
-          existing
-            ? existing.map((patient) =>
-                patient.id === updated.id ? updated : patient,
-              )
-            : [updated],
-        );
-        setIsEditOpen(false);
-        setSelectedPatient(null);
-      },
+  const updatePatient = useMutation<
+    Patient,
+    Error,
+    { id: string; values: Partial<Omit<Patient, "id">> }
+  >({
+    mutationFn: ({ id, values }) => patientsAPI.update(id, values),
+    onSuccess: (updated) => {
+      queryClient.setQueryData<Patient[]>(["patients"], (existing) =>
+        existing
+          ? existing.map((patient) =>
+              patient.id === updated.id ? updated : patient,
+            )
+          : [updated],
+      );
+      setIsEditOpen(false);
+      setSelectedPatient(null);
     },
-  );
+  });
 
-  const deletePatient = useMutation(patientsAPI.remove, {
+  const deletePatient = useMutation<
+    void,
+    Error,
+    string,
+    { previous?: Patient[] }
+  >({
+    mutationFn: patientsAPI.remove,
     onMutate: async (patientId: string) => {
-      await queryClient.cancelQueries(["patients"]);
+      await queryClient.cancelQueries({ queryKey: ["patients"] });
       const previous = queryClient.getQueryData<Patient[]>(["patients"]);
       queryClient.setQueryData<Patient[]>(["patients"], (old) =>
         old ? old.filter((patient) => patient.id !== patientId) : [],
@@ -63,7 +71,7 @@ export function usePatients() {
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries(["patients"]);
+      queryClient.invalidateQueries({ queryKey: ["patients"] });
       setDeleteTarget(null);
     },
   });
