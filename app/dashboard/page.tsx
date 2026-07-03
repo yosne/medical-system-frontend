@@ -64,15 +64,37 @@ export default function DashboardPage() {
           <div className="grid gap-4 lg:grid-cols-2">
             <div>
               <Card
-                title="Próximas citas"
-                description="Siguientes visitas programadas"
+                title="Consultas recientes"
+                description="Últimas consultas registradas"
               >
-                <div className="mt-4">
-                  {" "}
-                  {/* could reuse UpcomingAppointmentsCard here */}
-                  <p className="text-sm text-slate-500">
-                    Ver ajustes de agenda
-                  </p>
+                <div className="mt-4 space-y-3">
+                  <div className="rounded-2xl border border-slate-200 p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-semibold text-slate-900">
+                          Juan Pérez
+                        </p>
+
+                        <p className="text-sm text-slate-500">Cardiología</p>
+                      </div>
+
+                      <span className="text-sm text-slate-400">Hoy</span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-semibold text-slate-900">
+                          María González
+                        </p>
+
+                        <p className="text-sm text-slate-500">Pediatría</p>
+                      </div>
+
+                      <span className="text-sm text-slate-400">Ayer</span>
+                    </div>
+                  </div>
                 </div>
               </Card>
             </div>

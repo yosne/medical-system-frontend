@@ -43,3 +43,27 @@ export type MedicalRecord = {
   createdAt: string;
   updatedAt?: string;
 };
+export type Consultation = {
+  id: string;
+
+  patientId: string;
+  patientName: string;
+
+  doctorId: string;
+  doctorName: string;
+
+  specialtyId: number;
+  specialtyName: string;
+
+  reasonForVisit: string;
+
+  currentIllness?: string;
+
+  physicalExamination?: string;
+
+  mainDiagnosisCode?: string;
+
+  evolutionNotes?: string;
+
+  consultationDate: string;
+};
