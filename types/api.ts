@@ -67,3 +67,20 @@ export type Consultation = {
 
   consultationDate: string;
 };
+export type Exam = {
+  id: string;
+
+  consultationId: string;
+
+  patientName: string;
+
+  examType: string;
+
+  requestDescription: string;
+
+  specificResults?: string;
+
+  status: "Pending" | "Completed" | "Cancelled";
+
+  createdAt: string;
+};
